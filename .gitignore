@@ -15,3 +15,6 @@ build/
 
 # Logs
 *.log
+
+# Dependency lock files (optional, but recommended)
+package-lock.json
