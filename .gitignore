@@ -1,0 +1,17 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Environment variables
+.env
+
+# VS Code settings (if you're using it)
+.vscode/
+
+# Build files (if you use a build process like Webpack, Babel, etc.)
+dist/
+build/
+
+# Logs
+*.log
