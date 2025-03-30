@@ -1,5 +1,5 @@
 import express from "express";
-import { uploadAd,getMyAds } from "../controller/customerController.js";
+import { uploadAd,getMyAds,getNotifications,markNotificationsAsRead,getRemainingFreeAds,initiatePayment,verifyPayment } from "../controller/customerController.js";
 import upload from "../middleware/uploadMiddleware.js";
 import {protect} from "../middleware/authMiddleware.js";
 
@@ -11,5 +11,11 @@ router.post("/upload-ad", protect, upload.fields([
     { name: "thumbnail", maxCount: 1 }
   ]), uploadAd);
   router.get("/my-ads", protect, getMyAds);
+  router.get("/notifications", protect, getNotifications);
+  router.put("/notifications/mark-as-read", protect, markNotificationsAsRead);
+  router.get("/free-ads", protect, getRemainingFreeAds);
+  router.post("/razorpay/initiate", protect, initiatePayment);
+  router.post("/razorpay/verify", protect, verifyPayment);
+
 
 export default router;

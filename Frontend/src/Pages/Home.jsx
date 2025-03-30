@@ -17,10 +17,22 @@ import ad7 from "../assets/Images/ad7.jpg";
 import TiltedGrid from "../components/HomePage/TiltedImageGrid";
 const items = [
   "Item 1",
-  <div key="jsx-item-1">Custom JSX Content</div>,
+  // <div key="jsx-item-1">Custom JSX Content</div>,
   "https://images.unsplash.com/photo-1723403804231-f4e9b515fe9d?q=80&w=3870&auto=format&fit=crop",
   ad1,
   ad2,
+  ad3,
+  ad4,
+  ad5,
+  ad6,
+  ad7,
+  ad1,
+  ad2,
+  ad3,
+  ad4,
+  ad5,
+  ad6,
+  ad7,
   ad3,
   ad4,
   ad5,
@@ -32,7 +44,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <div className="relative bg-gradient-to-b from-purple-200 via-purple-100 to-white">
+      <div className="relative bg-purple-50 ">
         {/* Top SVG Wave */}
         <div className="absolute top-0 left-0 w-full overflow-hidden leading-none">
           {/* <svg viewBox="0 0 2400 800" className='w-full h-40 md:h-56 lg:h-64' xmlns='http://www.w3.org/2000/svg'>

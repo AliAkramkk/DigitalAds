@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { store } from "../redux/store";
 // Base URL for API requests
 const API_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5001/api";
 
@@ -14,7 +14,7 @@ const axiosInstance = axios.create({
 
 // Add request interceptor for authentication
 axiosInstance.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token"); // Retrieve token from localStorage
+  const token = store.getState().auth.token; // Retrieve token from localStorage
   if (token) {
     config.headers.Authorization = `Bearer ${token}`; // Attach token to headers
   }

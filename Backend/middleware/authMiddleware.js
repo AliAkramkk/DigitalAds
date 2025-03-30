@@ -1,12 +1,14 @@
 import jwt from 'jsonwebtoken';
 
 export const protect = async (req, res, next) => {
+  // console.log("Headers Received in Protect Middleware:", req.headers); // Debugging
+
     let token = req.headers.authorization;
     
-    console.log("Headers Received:", req.headers); // Debugging
+    // Debugging
   
     if (!token || !token.startsWith("Bearer ")) {
-      console.log("No valid token found"); // Debugging
+   // Debugging
       return res.status(401).json({ message: "Unauthorized, no token" });
     }
   
@@ -21,6 +23,23 @@ export const protect = async (req, res, next) => {
     } catch (error) {
       console.log("Token Verification Failed:", error.message);
       return res.status(401).json({ message: "Invalid token" });
+    }
+  };
+  
+  export const isAdmin = (req, res, next) => {
+    // console.log("User in isAdmin Middleware:", req.user);
+  
+    if (!req.user) {
+      console.log("No user found in request");
+      return res.status(401).json({ message: "Unauthorized, no user data" });
+    }
+  
+    if (req.user.role === "admin") {
+      console.log("Admin access granted");
+      next(); // Allow access
+    } else {
+      console.log("Admin access denied");
+      res.status(403).json({ message: "Forbidden, admin access required" });
     }
   };
   

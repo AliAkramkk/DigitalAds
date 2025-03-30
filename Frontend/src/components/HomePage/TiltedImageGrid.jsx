@@ -38,15 +38,15 @@ export default function TiltedGrid() {
           className="grid-item"
           initial={{ rotate: Math.random() * 20 - 10, opacity: 0 }}
           animate={{
-            opacity: 1,
+            opacity: 1 ,
             rotate: Math.random() * 20 - 10,
             y: isLargeScreen ? [0, -10, 10, 0] : 0, // Moves on large screens only
           }}
           whileHover={{ scale: 1.1, rotate: 0 }}
           transition={{
-            duration: 4,
-            repeat: Infinity,
-            repeatType: "mirror",
+            duration: 0,
+            repeat: 1,
+            repeatType: "",
             ease: "easeInOut",
           }}
         >

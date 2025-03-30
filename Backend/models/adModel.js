@@ -12,6 +12,11 @@ const adSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    blurb:{
+      type: String,
+      required: true,
+      trim: true,
+    } ,
     description: {
       type: String,
       required: true,
@@ -29,6 +34,7 @@ const adSchema = new mongoose.Schema(
       enum: ["pending", "approved", "rejected"],
       default: "pending",
     },
+  
     createdAt: {
       type: Date,
       default: Date.now,

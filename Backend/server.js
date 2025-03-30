@@ -7,6 +7,7 @@ import connectDB from "./config/db.js";
 // Import Routes
 import authRoutes from "./routes/authRoutes.js";
 import customerRoutes from "./routes/customerRoutes.js";
+import adminRoutes from "./routes/adminRoutes.js";
 
 // Load environment variables
 dotenv.config();
@@ -28,9 +29,10 @@ connectDB();
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/customer", customerRoutes);
+app.use("/api/admin", adminRoutes);
   // app.use("/api/users", userRoutes);
-  // app.use("/api/auth", authRoutes);
-  // app.use("/api/ads", adRoutes);
+  // app.use("/api/admin", authRoutes);
+
 
 // Start Server
 const PORT = process.env.PORT || 5000;
