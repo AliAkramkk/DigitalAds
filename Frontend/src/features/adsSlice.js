@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import axiosInstance from "../api/axiosInstance";
 
 const initialState = {
-  ads: [], // Stores uploaded ads
+  ads: [],
   loading: false,
   error: null,
+  remainingFreeAds: 2, // Default free ads limit
 };
 
 const adsSlice = createSlice({
@@ -16,30 +18,30 @@ const adsSlice = createSlice({
     },
     uploadAdSuccess: (state, action) => {
       state.loading = false;
-      state.ads.push(action.payload); // Add new ad to list
+      state.ads.push(action.payload);
+      if (state.remainingFreeAds > 0) {
+        state.remainingFreeAds -= 1;
+      }
     },
     uploadAdFailure: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },
-    updateAdStatus: (state, action) => {
-      const { id, status } = action.payload;
-      const adIndex = state.ads.findIndex((ad) => ad.id === id);
-      if (adIndex !== -1) {
-        state.ads[adIndex].status = status; // Update ad approval status
-      }
-    },
-    clearAds: (state) => {
-      state.ads = [];
+    setFreeAdLimit: (state, action) => {
+      state.remainingFreeAds = action.payload;
     },
   },
 });
 
-export const { 
-  uploadAdRequest, 
-  uploadAdSuccess, 
-  uploadAdFailure, 
-  updateAdStatus,
-  clearAds 
-} = adsSlice.actions;
+export const { uploadAdRequest, uploadAdSuccess, uploadAdFailure, setFreeAdLimit } = adsSlice.actions;
+
+export const checkFreeAdLimit = () => async (dispatch) => {
+  try {
+    const { data } = await axiosInstance.get("/customer/free-ads");
+    dispatch(setFreeAdLimit(data.remainingFreeAds));
+  } catch (error) {
+    console.error("Error fetching free ads:", error);
+  }
+};
+
 export default adsSlice.reducer;

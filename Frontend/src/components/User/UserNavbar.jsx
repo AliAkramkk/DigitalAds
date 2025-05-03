@@ -58,6 +58,7 @@ const UserNavbar = () => {
           {/* Dropdown Menu */}
           {menuOpen && (
             <div className="absolute right-0 mt-2 bg-white shadow-lg rounded-lg w-40 py-2">
+               <p className="px-4 py-2 font-semibold">Hi, {user?.name}</p>
               <Link to="/user/profile" className="block px-4 py-2 hover:bg-gray-100">Profile</Link>
               <button onClick={handleLogout} className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center space-x-2">
                 <FiLogOut /> <span>Logout</span>

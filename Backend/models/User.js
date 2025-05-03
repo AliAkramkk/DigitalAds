@@ -21,6 +21,8 @@ const UserSchema = new mongoose.Schema(
       required: function () { return this.role === "customer"; } 
     },
 
+    
+
     // ✅ Email Verification (OTP-based)
     isVerified: { type: Boolean, default: false },
     isAdmin: { type: Boolean, default: false },
@@ -36,9 +38,14 @@ const UserSchema = new mongoose.Schema(
     profileImage: { type: String, default: "" },
 
     // ✅ Last Login Timestamp
-    lastLogin: { type: Date }
+    lastLogin: { type: Date },
+
+    totalAdsWatched: { type: Number, default: 0 },
+    totalRewardEarned: { type: Number, default: 0 }
   },
-  { timestamps: true }
+  { timestamps: true },
+
+ 
 );
 
 const User = mongoose.model("User", UserSchema);

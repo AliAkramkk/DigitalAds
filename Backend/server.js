@@ -1,16 +1,19 @@
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import dotenv from "dotenv";
 import connectDB from "./config/db.js";
+
+
 
 // Import Routes
 import authRoutes from "./routes/authRoutes.js";
 import customerRoutes from "./routes/customerRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
-
+import paymentRoutes from "./routes/paymentRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 // Load environment variables
-dotenv.config();
 
 // Initialize Express App
 const app = express();
@@ -29,10 +32,11 @@ connectDB();
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/customer", customerRoutes);
+app.use("/api/user", userRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/payment", paymentRoutes);
   // app.use("/api/users", userRoutes);
-  // app.use("/api/admin", authRoutes);
-
+  
 
 // Start Server
 const PORT = process.env.PORT || 5000;

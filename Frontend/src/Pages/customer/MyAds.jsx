@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-// import { Card, CardContent } from "@/components/ui/card";
-// import { Button } from "@/components/ui/button";
 import { Loader } from "lucide-react";
 import axiosInstance from "../../api/axiosInstance";
 import CustomerNavbar from "../../components/customer/CustomerNavbar";

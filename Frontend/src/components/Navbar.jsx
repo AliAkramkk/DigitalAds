@@ -30,15 +30,15 @@ const Navbar = () => {
     >
       <nav className="flex justify-between items-center max-w-6xl mx-auto px-6 py-3">
         {/* Logo */}
-        <Link to="/" className="text-xl md:text-4xl font-bold text-gray-800">
-          ADs View<span className="text-sm">.in</span>
+        <Link to="/" className="text-xl md:text-4xl font-robotoCondensed text-gray-800">
+          AD<span className="text-purple-900">s</span> View<span className="text-sm">.in</span>
         </Link>
 
         {/* Desktop Buttons */}
         <div className="hidden sm:flex gap-4">
           <button
             onClick={() => navigate("/login")}
-            className="px-6 py-3 bg-black text-white rounded-lg transition hover:rounded-3xl"
+            className="px-6 py-3 bg-black text-white rounded-md transition hover:rounded-3xl"
           >
             Login
           </button>

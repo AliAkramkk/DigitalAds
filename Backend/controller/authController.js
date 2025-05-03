@@ -6,7 +6,10 @@ import { sendEmail } from "../utils/email.js";
 const generateOTP = () => Math.floor(100000 + Math.random() * 900000).toString();
 
 export const signup = async (req, res) => {
+  console.log("hlo from signup");
+  
   const { name, email, password, role, companyName, gstNumber } = req.body;
+console.log(req.body);
 
   try {
     const existingUser = await User.findOne({ email });
@@ -31,7 +34,7 @@ export const signup = async (req, res) => {
       companyName: role === "customer" ? companyName : undefined,
       gstNumber: role === "customer" ? gstNumber : undefined,
     });
-console.log(user.otp)
+console.log("otp",user.otp)
     // Send OTP via email
     await sendEmail(
       user.email,
@@ -45,6 +48,7 @@ console.log(user.otp)
     });
 
   } catch (error) {
+    console.error("Signup Error:", error);
     res.status(500).json({ error: error.message });
   }
 };

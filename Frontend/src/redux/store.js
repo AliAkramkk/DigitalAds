@@ -4,16 +4,18 @@ import storage from "redux-persist/lib/storage";
 import { combineReducers } from "redux";
 import authReducer from "../features/authSlice";
 import adsReducer from "../features/adsSlice"; // Import adsSlice
+import paymentReducer from "../features/paymentSlice"; // Import paymentSlice
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["auth"], // Persist only auth state
+  whitelist: ["auth","ads","payment"], // Persist only auth state
 };
 
 const rootReducer = combineReducers({
   auth: authReducer,
   ads: adsReducer, // Add ads reducer
+  payment: paymentReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -1,6 +1,6 @@
 import React from "react";
-import hom1 from "../assets/Images/hom1.png";
-import hom2 from "../assets/Images/contentM5.png";
+import hom1 from "../assets/Images/phone1.png";
+import hom2 from "../assets/Images/phone2.png";
 import GridMotion from "../components/HomePage/GridMotion";
 import Navbar from "../components/Navbar";
 import { motion } from "framer-motion";
@@ -55,14 +55,15 @@ const Home = () => {
 
         {/* Hero Section */}
         <div className="relative flex flex-col md:flex-row justify-around pt-24 items-center px-6">
-          <div className="m-3 py-10 md:py-14 md:px-5 text-center md:text-left">
-            <h1 className="text-3xl md:text-5xl font-bold text-gray-900">
+          <div className="m-3 py-10 md:py-15 md:px-5 text-left md:text-left">
+            <h1 className="text-3xl md:text-5xl font-mono text-gray-900">
               MAKE A BETTER <br />{" "}
-              <span className="text-purple-900">INCOME</span>
+              <span className="text-blue-500 text-wrap whitespace-pre-line">INCOME</span>
             </h1>
-            <p className="md:w-2/3 text-gray-700 mt-4 text-xl">
-              Ads View, your comprehensive Income webapplication, is here to
-              redefine your Income Stratergy.
+            <p className="md:w-2/3 text-gray-700 mt-4 text-lg md:text-xl">
+            Ads View, your comprehensive income web application, is here to redefine the way you earn online. 
+  Whether you're a content creator, a business, or just someone looking to boost your passive income, 
+  our platform empowers you to monetize your time effectively.
             </p>
             <button className="mt-3 md:mt-5 md:px-4 md:py-3 p-3 bg-black text-white m-  rounded-lg flex items-center justify-around gap-4 transition-all duration-300 group">
               Learn more
@@ -73,9 +74,9 @@ const Home = () => {
           </div>
           <motion.img
             src={hom1}
-            alt="Stock Market"
-            className="m-2 md:py-5 md:w-1/2 md:rounded-full border-4 border-purple-200 shadow-2xl"
-            animate={{ y: [0, -10, 0] }}
+            alt=""
+            className="m-2 md:py-5  md:w-[550px] md:h[300px] object-auto scale-y-12 mr-20"
+            animate={{ y: [0, -5, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           />
         </div>
@@ -84,19 +85,20 @@ const Home = () => {
         <div className="flex flex-col md:flex-row justify-around items-center px-6 py-12">
           <motion.img
             src={hom2}
-            alt="Business Growth"
-            className="m-2 md:py-5 md:w-1/2 md:rounded-full border-4 border-purple-200 shadow-2xl"
+            alt=""
+            className="m-2 md:py-5 md:w-1/2 "
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           />
-          <div className="m-3 md:py-14 px-8 text-center md:text-left  md:ml-16">
-            <h1 className="text-2xl md:text-5xl font-bold text-gray-900">
-              Are You A Business <span className=" text-purple-900">Owner?</span> <br />{" "}
+          <div className="m-3 md:py-14 px-8 text-left md:text-left  md:ml-16 w-full md:w-1/2">
+            <h1 className="text-3xl md:text-5xl font-mono text-gray-900">
+              Are You A Business <span className=" text-blue-500">Owner?</span> <br />{" "}
               {/* <span className="text-purple-900">Owner?</span>  */}
             </h1>
-            <p className="text-gray-700 mt-4 text-xl w-2/3 md:text-">
-              You can upload your own Ads to reach more customers and grow your
-              business!
+            <p className="text-gray-700 mt-4 text-lg  md:text-xl w-full">
+            Promote your products or services with ease on our platform. Reach a broader audience, increase your brand visibility, 
+  and drive real engagement. With Ads View, you can upload and manage your own ads, monitor performance, 
+  and connect directly with potential customers — all in one place.
             </p>
             <button className="mt-3 md:mt-5 md:px-4 md:py-3 p-3 bg-black text-white m-  rounded-lg flex items-center justify-around gap-4 transition-all duration-300 group">
               Learn more
@@ -111,10 +113,10 @@ const Home = () => {
  <Achievments />
 <Services />
         <div className="hidden md:block py-12 text-center">
-          <h1 className="text-3xl font-bold text-gray-900">
+          <h1 className="text-5xl font-mono text-blue-800">
             Some of our Customers
           </h1>
-          <GridMotion items={items} />
+          {/* <GridMotion items={items} /> */}
 
        
         </div>

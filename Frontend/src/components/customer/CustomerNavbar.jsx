@@ -9,6 +9,8 @@ import axiosInstance from "../../api/axiosInstance";
 
 const CustomerNavbar = () => {
   const { user, token } = useSelector((state) => state.auth);
+  console.log("user",user);
+  
   const navigate = useNavigate();
   const dispatch = useDispatch();
   
