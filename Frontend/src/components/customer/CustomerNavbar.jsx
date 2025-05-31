@@ -9,7 +9,7 @@ import axiosInstance from "../../api/axiosInstance";
 
 const CustomerNavbar = () => {
   const { user, token } = useSelector((state) => state.auth);
-  console.log("user",user);
+  // console.log("user",user);
   
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -44,6 +44,7 @@ const CustomerNavbar = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
   
+  
       // **Update UI instantly: Mark notifications as read in state**
       setNotifications((prev) =>
         prev.map((notif) => ({ ...notif, isRead: true }))
@@ -70,7 +71,7 @@ const CustomerNavbar = () => {
   };
 
   return (
-    <nav className="bg-white text-black p-4 shadow-lg relative">
+    <nav className="bg-white text-black p-4 shadow-md relative">
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/customer" className="text-2xl font-bold">
           Ad Manager

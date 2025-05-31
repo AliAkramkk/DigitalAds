@@ -34,28 +34,25 @@ const Login = () => {
   //   }
   // }, [user, navigate]);
 
-  const onSubmit = async (data) => {
-    setLoading(true);
-    try {
-      console.log("Logging in with:", data);
-      const response = await loginUser(data.email, data.password);
-      console.log("Login Response:", response);
+ const onSubmit = async (data) => {
+  setLoading(true);
+  try {
+    const response = await loginUser(data.email, data.password);
 
-      dispatch(loginSuccess({ user: response.user, token: response.token })); 
-      toast.success(response.message);
+    dispatch(loginSuccess({ user: response.user, token: response.token })); 
+    toast.success(response.message);
 
-      setTimeout(() => {
-        // window.location.reload();
-        navigate(getDashboardRoute(response.user.role));
-      }, 500);
-    } catch (error) {
-      const errorMessage = error.response?.data?.message || "❌ Login failed. Please try again.";
-      toast.error(errorMessage);
-    } finally {
-      setLoading(false);
-    }
-  };
+    setTimeout(() => {
+      navigate(getDashboardRoute(response.user.role));
+    }, 500);
 
+  } catch (error) {
+    const errorMessage = error.response?.data?.message || "❌ Login failed. Please try again.";
+    toast.error(errorMessage);
+  } finally {
+    setLoading(false);
+  }
+};
   return (
     <>
      <Navbar />

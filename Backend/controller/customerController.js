@@ -2,11 +2,17 @@ import cloudinary from "../config/cloudinary.js";
 import Ad from "../models/adModel.js"; // Ad Schema
 import Notification from "../models/Notification.js";
 import  Payment from "../models/Payment.js";
+import AdsView from "../models/AdViewSchema.js"
+import Comment from "../models/CommentSchema.js";
 import crypto from "crypto";
 import Razorpay from "razorpay";
 import User from "../models/User.js";
 import dotenv from "dotenv";
 import { log } from "console";
+import mongoose from "mongoose";
+import Inquiry from "../models/Inquiry.js";
+import { sendEmail } from "../utils/email.js";
+
 dotenv.config();
 
 export const uploadAd = async (req, res) => {
@@ -119,7 +125,10 @@ export const getRemainingFreeAds = async (req, res) => {
     const customerId = req.user.userId;
 
     // Count how many ads the user has uploaded
-    const uploadedAdsCount = await Ad.countDocuments({ customer: customerId });
+    const uploadedAdsCount = await Ad.countDocuments({
+      customer: customerId,
+      status: { $in: ["approved", "pending"] } // Or whatever logic you use
+    });
 
     // Fetch the latest valid subscription
     const latestPayment = await Payment.findOne({
@@ -159,70 +168,135 @@ export const getRemainingFreeAds = async (req, res) => {
     res.status(500).json({ message: "Server error", error });
   }
 };
-// const razorpay = new Razorpay({
-//   key_id: process.env.RAZORPAY_KEY_ID,
-//   key_secret: process.env.RAZORPAY_KEY_SECRET,
-// });
 
+export const getCustomerDashboardSummary = async (req, res) => {
+  try {
+    const customerId = req.user.userId;
 
-// console.log("Razorpay Key ID:", process.env.RAZORPAY_KEY_ID);
-// console.log("Razorpay Key Secret:", process.env.RAZORPAY_KEY_SECRET);
+    // Total ads uploaded
+    const uploadedAdsCount = await Ad.countDocuments({ customer: customerId });
 
+    // Watched ads count
+   const watchedCountAggregation = await AdsView.aggregate([
+      {
+        $match: { watchedFully: true }
+      },
+      {
+        $lookup: {
+          from: "ads",
+          localField: "ad",
+          foreignField: "_id",
+          as: "adData"
+        }
+      },
+      { $unwind: "$adData" },
+      {
+        $match: {
+          "adData.customer": new mongoose.Types.ObjectId(customerId)
+        }
+      },
+      {
+        $count: "watchedCount"
+      }
+    ]);
 
+    const watchedCount = watchedCountAggregation[0]?.watchedCount || 0;
 
-// export const initiatePayment = async (req, res) => {
-//   // console.log("Initiating payment:", req.body);
+    const latestPayment = await Payment.findOne({
+      customer: customerId,
+      paymentStatus: "success",
+    }).sort({ subscriptionStart: -1 });
+
+    let planType = "Free";
+    let adLimit = FREE_AD_LIMIT;
+    let subscriptionExpiry = null;
+    let daysRemaining = 0;
+
+    if (latestPayment && latestPayment.subscriptionExpiry > new Date()) {
+      planType = latestPayment.planType;
+      adLimit += latestPayment.adLimit;
+      subscriptionExpiry = latestPayment.subscriptionExpiry;
+
+   const normalizeDate = (date) => {
+  const d = new Date(date);
+  d.setHours(0, 0, 0, 0);
+  return d;
+};
+
+     const today = normalizeDate(new Date());
+const expiry = normalizeDate(new Date(subscriptionExpiry));
+daysRemaining = Math.max(Math.floor((expiry - today) / (1000 * 60 * 60 * 24)), 0);
+    }
+
+    const adsRemaining = Math.max(adLimit - uploadedAdsCount, 0);
+
+     const comments = await Comment.find()
+      .populate({
+        path: 'ad',
+        match: { customer: customerId },
+        select: 'title'
+      })
+      .populate({ path: 'user', select: 'name' })
+      .sort({ createdAt: -1 });
+
+    const filteredComments = comments
+      .filter(c => c.ad) // Remove comments on ads not owned by this user
+      .map(c => ({
+        adTitle: c.ad.title,
+        comment: c.comment,
+        rating: c.rating,
+        createdAt: c.createdAt,
+        userName: c.user.name
+      }));
+
+    res.status(200).json({
+      uploadedAdsCount,
+      watchedCount,
+      adsRemaining,
+      planType,
+      subscriptionExpiry,
+      daysRemaining,
+       comments: filteredComments
+    });
+  } catch (error) {
+    console.error("Dashboard summary error:", error);
+    res.status(500).json({ message: "Server error", error: error.toString() });
+  }
+};
+
+export const submitInquiry = async (req, res) => {
+  console.log("Received inquiry request:", req.body);
   
-//   const { amount, plan } = req.body;
-//   try {
-//     const options = {
-//       amount: amount * 100, // Razorpay accepts amount in paise
-//       currency: "INR",
-//       receipt: `order_rcpt_${Date.now()}`,
-//     };
+  try {
+    const { name, email, service, message, phone } = req.body;
 
-//     if (!razorpay) {
-//       console.error("❌ Razorpay instance is not initialized!");
-//       return res.status(500).json({ message: "Razorpay instance not initialized" });
-//     }
+    const newInquiry = new Inquiry({
+      user: req.user.id,
+      name,
+      email,
+      service,
+      message,
+      phone,
+    });
 
-// // console.log("razorpay instance initialized",razorpay);
+    await newInquiry.save();
 
-//     const order = await razorpay.orders.create(options);
-//     // console.log("Order created:", order);
-    
-//     res.json({ orderId: order.id });
-//   } catch (error) {
-//     res.status(500).json({ message: "Payment initiation failed", error });
-//   }
-// };
+    // Compose email HTML
+    const html = `
+      <h3>New Customer Inquiry</h3>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Phone:</strong> ${phone}</p>
+      <p><strong>Service:</strong> ${service}</p>
+      <p><strong>Message:</strong> ${message}</p>
+    `;
 
-// // Verify payment and update ad limit
-// export const verifyPayment = async (req, res) => {
-//   // console.log("Verifying payment:", req.body);
-  
-//   const { razorpay_order_id, razorpay_payment_id, razorpay_signature, plan } = req.body;
+    // Send to admin or company email
+    await sendEmail(process.env.NOTIFY_EMAIL, "New Customer Inquiry", html);
 
-//   const hmac = crypto.createHmac("sha256", process.env.RAZORPAY_KEY_SECRET);
-//   hmac.update(razorpay_order_id + "|" + razorpay_payment_id);
-//   const digest = hmac.digest("hex");
-
-//   if (digest !== razorpay_signature) {
-//     return res.status(400).json({ message: "Invalid payment signature" });
-//   }
-
-//   // Find user and update their ad limit
-//   const user = await User.findById(req.user.userId);
-//   if (!user) return res.status(404).json({ message: "User not found" });
-
-//   if (plan === "daily") user.adLimit += 1;
-//   if (plan === "monthly") user.adLimit += 10;
-//   if (plan === "three-month") user.adLimit += 30;
-//   if (plan === "yearly") user.adLimit += 50;
-
-//   await user.save();
-
-//   res.json({ message: "Payment successful, ad limit updated!" });
-// };
-
-
+    res.status(201).json({ message: "Inquiry submitted successfully" });
+  } catch (error) {
+    console.error("Inquiry error:", error);
+    res.status(500).json({ message: "Something went wrong" });
+  }
+};

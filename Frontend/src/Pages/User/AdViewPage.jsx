@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ReactPlayer from 'react-player';
 import axiosInstance from "../../api/axiosInstance";
+import UserNavbar from '../../components/User/UserNavbar';
 
 const AdWatchPage = () => {
   const { id } = useParams();
@@ -73,6 +74,8 @@ const AdWatchPage = () => {
   if (!ad) return <div className="p-5">Loading...</div>;
 
   return (
+    <>
+    <UserNavbar />
     <div className="max-w-4xl mx-auto p-5">
       <h1 className="text-3xl font-bold mb-4">{ad.title}</h1>
       <p className="text-gray-600 mb-4">{ad.description}</p>
@@ -158,6 +161,7 @@ const AdWatchPage = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 

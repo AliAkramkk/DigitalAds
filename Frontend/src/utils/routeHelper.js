@@ -6,7 +6,7 @@ export const getDashboardRoute = (role) => {
     case "customer":
       return "/customer";
     case "user":
-      return "/user";
+      return "/user/home";
     default:
       return "/login";
   }

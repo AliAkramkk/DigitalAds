@@ -43,6 +43,8 @@ const AddAd = () => {
       })
       .then((res) => {
         const { subscription, remainingFreeAds } = res.data;
+        console.log("response from backend",res.data);
+        
         if (subscription) {
           dispatch(setSubscription({
             planType: subscription.planType,

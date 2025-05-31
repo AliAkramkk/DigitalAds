@@ -1,22 +1,36 @@
 import express from "express";
-import { uploadAd,getMyAds,getNotifications,markNotificationsAsRead,getRemainingFreeAds, } from "../controller/customerController.js";
+import {
+  uploadAd,
+  getMyAds,
+  getNotifications,
+  markNotificationsAsRead,
+  getRemainingFreeAds,
+  getCustomerDashboardSummary,
+  submitInquiry,
+} from "../controller/customerController.js";
 import upload from "../middleware/uploadMiddleware.js";
-import {protect} from "../middleware/authMiddleware.js";
+import { protect } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
 // Route to upload ads (only accessible to customers)
-router.post("/upload-ad", protect, upload.fields([
+router.post(
+  "/upload-ad",
+  protect,
+  upload.fields([
     { name: "video", maxCount: 1 },
-    { name: "thumbnail", maxCount: 1 }
-  ]), uploadAd);
-  router.get("/my-ads", protect, getMyAds);
-  router.get("/notifications", protect, getNotifications);
-  // router.get("/subscription-details", protect, getSubscriptionDetails);
+    { name: "thumbnail", maxCount: 1 },
+  ]),
+  uploadAd
+);
+router.post("/inquiries", protect, submitInquiry);
 
-  router.put("/notifications/mark-as-read", protect, markNotificationsAsRead);
-  router.get("/free-ads", protect, getRemainingFreeAds);
+router.get("/my-ads", protect, getMyAds);
+router.get("/notifications", protect, getNotifications);
+// router.get("/subscription-details", protect, getSubscriptionDetails);
 
-
+router.put("/notifications/mark-as-read", protect, markNotificationsAsRead);
+router.get("/free-ads", protect, getRemainingFreeAds);
+router.get("/dashboard-summary", protect, getCustomerDashboardSummary);
 
 export default router;

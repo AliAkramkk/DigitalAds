@@ -21,7 +21,8 @@ const UserSchema = new mongoose.Schema(
       required: function () { return this.role === "customer"; } 
     },
 
-    
+    isBlocked: { type: Boolean, default: false },
+
 
     // ✅ Email Verification (OTP-based)
     isVerified: { type: Boolean, default: false },

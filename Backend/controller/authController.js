@@ -135,7 +135,7 @@ export const verifyOTP = async (req, res) => {
 
   export const login = async (req, res) => {
     const { email, password } = req.body;
-  
+
     try {
       const user = await User.findOne({ email });
       if (!user) {
@@ -144,6 +144,7 @@ export const verifyOTP = async (req, res) => {
   
       // Compare passwords
       const isMatch = await bcrypt.compare(password, user.password);
+
       if (!isMatch) {
         return res.status(400).json({ message: "Invalid credentials" });
       }
@@ -151,13 +152,18 @@ export const verifyOTP = async (req, res) => {
       if (!user.isVerified) return res.status(403).json({ message: "Please verify your email first" });
   
       // Generate JWT Token
+        if (user.isBlocked) {
+      return res.status(403).json({
+        message: "Your account has been blocked. Please contact support.",
+      });
+    }
       const token = generateToken(user);
       // console.log("Generated Token:", token); // DEBUGGING LINE
   
       res.status(200).json({
         message: "✅ Login successful",
         token,
-        user: { id: user._id, name: user.name, role: user.role },
+        user: { id: user._id, name: user.name,email:user.email, role: user.role },
       });
   
     } catch (error) {

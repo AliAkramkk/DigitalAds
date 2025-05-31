@@ -38,7 +38,8 @@ export const loginUser = async (email, password) => {
     const response = await axiosInstance.post("/auth/login", { email, password });
     return response.data;
   } catch (error) {
-    throw error.response?.data || error.message;
+    // Let the calling function handle the error
+    throw error;
   }
 };
 

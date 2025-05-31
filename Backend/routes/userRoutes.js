@@ -6,7 +6,8 @@ import {
   claimReward,
   postComment,
   getAdComments,
-  getAdRating
+  getAdRating,
+  getUserStats
 } from "../controller/userController.js";
 import { protect } from '../middleware/authMiddleware.js';
 
@@ -19,5 +20,6 @@ router.post("/reward", protect, claimReward);
 router.post("/ads/:id/comment", protect, postComment);
 router.get("/ads/:id/comments", protect, getAdComments);
 router.get("/ads/:id/rating", getAdRating);
+router.get("/stats", protect, getUserStats);
 
 export default router;

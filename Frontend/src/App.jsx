@@ -9,6 +9,7 @@ import Login from "./Pages/Login";
 import Signup from "./Pages/SignUp";
 import VerifyOTP from "./Pages/VerifyOTP";
 import AdminDashbord from "./Pages/Admin/AdminDashbord";
+import Form from "./Pages/customer/Form"
 import CustomerRoutes from "./routes/CustomerRoutes";
 import UserRoutes from "./routes/UserRoutes";
 import AdminRoutes from "./routes/AdminRoutes";
@@ -26,6 +27,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path ="/verify-otp" element={<VerifyOTP />} />
+      <Route path="/form" element={<Form />} />
 
       
       <Route element={<ProtectedRoute allowedRoles={["user"]} />}>
