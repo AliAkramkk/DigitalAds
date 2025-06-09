@@ -35,7 +35,7 @@ export const protect = async (req, res, next) => {
     }
   
     if (req.user.role === "admin") {
-      console.log("Admin access granted");
+      // console.log("Admin access granted");
       next(); // Allow access
     } else {
       console.log("Admin access denied");

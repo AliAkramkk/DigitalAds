@@ -1,7 +1,7 @@
 import axios from "axios";
 import { store } from "../redux/store";
 // Base URL for API requests
-const API_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5001/api";
+const API_URL = import.meta.env.VITE_API_BASE_URL ;
 
 // Create an Axios instance
 const axiosInstance = axios.create({

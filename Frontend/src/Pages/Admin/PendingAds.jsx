@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axiosInstance from "../../api/axiosInstance";
 import { useSelector } from "react-redux";
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField } from "@mui/material";
+import AdminLayout from "../../components/admin/AdminLayout";
 
 const PendingAds = () => {
   const user = useSelector((state) => state.auth.user);
@@ -69,6 +70,7 @@ const PendingAds = () => {
   if (loading) return <p>Loading pending ads...</p>;
 
   return (
+    <AdminLayout>
     <div className="container mx-auto p-6">
       <h1 className="text-3xl font-semibold mb-6 text-center">Pending Ads</h1>
       {currentAds.length === 0 ? (
@@ -139,6 +141,7 @@ const PendingAds = () => {
         </DialogActions>
       </Dialog>
     </div>
+    </AdminLayout>
   );
 };
 

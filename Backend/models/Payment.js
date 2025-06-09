@@ -9,7 +9,7 @@ const paymentSchema = new mongoose.Schema(
     },
     planType: {
       type: String,
-      enum: ["daily", "monthly", "three-month", "yearly"],
+      enum: ["daily", "monthly", "threeMonth", "yearly"],
       required: true,
     },
     amount: {

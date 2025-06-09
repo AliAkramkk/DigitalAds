@@ -4,8 +4,9 @@ import Reward from "../models/rewardSchema.js";
 import Payment from "../models/Payment.js";
 import User from "../models/User.js";
 
+
 export const getPendingAds = async (req, res) => {
-    console.log("Fetching pending ads"); // Debugging
+    // console.log("Fetching pending ads"); // Debugging
     
   try {
     const ads = await Ad.find({ status: "pending" });
@@ -135,7 +136,7 @@ export const getPlanDistribution = async (req, res) => {
 export const getUserCount = async(req, res) => {
   try {
     const userDetails = await User.find({ role: "user" });
-    console.log("User details:", userDetails); 
+    // console.log("User details:", userDetails); 
     
 
     // const customerCount = await User.countDocuments({ role: "customer" });
@@ -180,3 +181,60 @@ export const unblockUser = async (req, res) => {
     res.status(500).json({ message: "Server error", error });
   }
 };
+
+// GET /admin/getcustomers
+export const getCustomerDetails = async (req, res) => {
+  try {
+    const customers = await User.find({ role: "customer" });
+
+    const enrichedCustomers = await Promise.all(
+      customers.map(async (customer) => {
+        // Count ads posted
+        const adsPosted = await Ad.countDocuments({ customer: customer._id });
+// console.log("Customer ID:", customer._id, "Ads Posted:", adsPosted); // Debugging
+
+        // Get the latest ACTIVE plan
+        const activePlan = await Payment.findOne({
+          customer: customer._id,
+          paymentStatus: "success",
+          subscriptionExpiry: { $gt: new Date() }
+        })
+          .sort({ subscriptionExpiry: -1 })
+          .select("planType subscriptionExpiry");
+
+        let planInfo;
+// console.log("Active Plan:", activePlan); // Debugging
+
+        if (activePlan) {
+          planInfo = activePlan.planType;
+        } else {
+          // Get the most recent (even if expired) successful payment
+          const lastExpiredPlan = await Payment.findOne({
+            customer: customer._id,
+            paymentStatus: "success",
+          })
+            .sort({ subscriptionExpiry: -1 })
+            .select("planType subscriptionExpiry");
+
+          if (lastExpiredPlan) {
+            planInfo = `Expired (${lastExpiredPlan.planType} on ${lastExpiredPlan.subscriptionExpiry.toISOString().split('T')[0]})`;
+          } else {
+            planInfo = "No plan";
+          }
+        }
+
+        return {
+          ...customer.toObject(),
+          adsPosted,
+          plan: planInfo,
+        };
+      })
+    );
+
+    res.status(200).json({ customers: enrichedCustomers });
+  } catch (error) {
+    console.error("Error fetching customer details:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+

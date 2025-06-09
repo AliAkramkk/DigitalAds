@@ -13,11 +13,11 @@ console.log("Razorpay Key ID1:", process.env.RAZORPAY_KEY_ID);
 
 // ✅ 1. Create a Payment Order
 export const createPayment = async (req, res) => {
-    console.log("Creating payment order:", req.body);
+    // console.log("Creating payment order:", req.body);
     
   try {
     const { plan, amount } = req.body;
-    console.log("Received amount:", amount, "Plan:", plan);
+    // console.log("Received amount:", amount, "Plan:", plan);
 
     const customerId = req.user.userId; // Assuming user ID is available in req.user
 
@@ -29,7 +29,7 @@ export const createPayment = async (req, res) => {
     let expiryDate = new Date();
     if (plan === "daily") expiryDate.setDate(expiryDate.getDate() + 1);
     if (plan === "monthly") expiryDate.setMonth(expiryDate.getMonth() + 1);
-    if (plan === "three-month") expiryDate.setMonth(expiryDate.getMonth() + 3);
+    if (plan === "threeMonth") expiryDate.setMonth(expiryDate.getMonth() + 3);
     if (plan === "yearly") expiryDate.setFullYear(expiryDate.getFullYear() + 1);
 
     // Create an order in Razorpay
@@ -52,7 +52,7 @@ res.status(500).json({ message: "Error creating payment", error: error.message }
 export const verifyPayment = async (req, res) => {
     try {
       const { razorpay_payment_id, razorpay_order_id, razorpay_signature, plan } = req.body;
-      console.log("Verifying payment:", req.body);
+      // console.log("Verifying payment:", req.body);
       const customerId = req.user.userId;
   
       // Validate input
@@ -84,7 +84,7 @@ export const verifyPayment = async (req, res) => {
         expiryDate.setMonth(expiryDate.getMonth() + 1);
         adLimit = 50;
       }
-      if (plan === "three-month") {
+      if (plan === "threeMonth") {
         expiryDate.setMonth(expiryDate.getMonth() + 3);
         adLimit = 150;
       }

@@ -6,7 +6,7 @@ import Home from "./Pages/Home";
 
 import { useSelector } from "react-redux";
 import Login from "./Pages/Login";
-import Signup from "./Pages/SignUp";
+import Signup from "./Pages/Signup";
 import VerifyOTP from "./Pages/VerifyOTP";
 import AdminDashbord from "./Pages/Admin/AdminDashbord";
 import Form from "./Pages/customer/Form"
