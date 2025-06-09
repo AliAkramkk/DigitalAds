@@ -22,7 +22,7 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cors({
-  origin: ["http://localhost:5173", "https://your-frontend.netlify.app"], 
+  origin: ["http://localhost:5173", " https://shimmering-capybara-84a6ef.netlify.app"], 
   credentials: true,
 }));
 app.use(cookieParser());
