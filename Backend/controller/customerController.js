@@ -127,7 +127,7 @@ export const getRemainingFreeAds = async (req, res) => {
     // Count how many ads the user has uploaded
     const uploadedAdsCount = await Ad.countDocuments({
       customer: customerId,
-      status: { $in: ["approved", "pending"] } // Or whatever logic you use
+      status: { $in: ["approved", "pending"] } 
     });
 
     // Fetch the latest valid subscription

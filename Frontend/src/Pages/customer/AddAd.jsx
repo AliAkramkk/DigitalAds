@@ -24,7 +24,8 @@ const AddAd = () => {
   const [blurb, setBlurb] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const token = localStorage.getItem("token");
+  const token = useSelector((state) => state.auth.token);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

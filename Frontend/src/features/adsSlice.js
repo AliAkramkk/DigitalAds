@@ -38,6 +38,8 @@ export const { uploadAdRequest, uploadAdSuccess, uploadAdFailure, setFreeAdLimit
 export const checkFreeAdLimit = () => async (dispatch) => {
   try {
     const { data } = await axiosInstance.get("/customer/free-ads");
+    console.log("Remaining free ads data:", data);
+    
     dispatch(setFreeAdLimit(data.remainingFreeAds));
   } catch (error) {
     console.error("Error fetching free ads:", error);
