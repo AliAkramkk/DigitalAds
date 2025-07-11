@@ -70,7 +70,7 @@ const Signup = () => {
 
         <select {...register("role")} className="w-full p-2 border rounded mb-2" disabled={loading}>
           <option value="">Select Role</option>
-          <option value="admin">Admin</option>
+         
           <option value="user">User</option>
           <option value="customer">Customer</option>
         </select>
