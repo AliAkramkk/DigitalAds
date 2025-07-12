@@ -24,6 +24,7 @@
     "axios": "^1.7.9",
     "chart.js": "^4.4.9",
     "chartjs-plugin-datalabels": "^2.2.0",
+    "firebase": "^11.10.0",
     "framer-motion": "^12.4.10",
     "gsap": "^3.12.7",
     "lucide-react": "^0.475.0",

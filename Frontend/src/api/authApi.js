@@ -52,3 +52,8 @@ export const verifyEmail = async (token) => {
     throw error.response?.data || "Something went wrong!";
   }
 };
+
+export const loginUserWithGoogle = async (googleData) => {
+  const response = await axiosInstance.post("/auth/google-login", googleData);
+  return response.data;
+};

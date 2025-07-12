@@ -8,7 +8,7 @@ const generateOTP = () => Math.floor(100000 + Math.random() * 900000).toString()
 export const signup = async (req, res) => {
   console.log("hlo from signup");
   
-  const { name, email, password, role, companyName, gstNumber } = req.body;
+  const { name, email, password,phone , role, companyName, gstNumber } = req.body;
 console.log(req.body);
 
   try {
@@ -27,6 +27,7 @@ console.log(req.body);
       name,
       email,
       password: hashedPassword,
+      phone,
       role,
       isVerified: false,
       otp,
@@ -34,7 +35,7 @@ console.log(req.body);
       companyName: role === "customer" ? companyName : undefined,
       gstNumber: role === "customer" ? gstNumber : undefined,
     });
-console.log("otp",user.otp)
+
     // Send OTP via email
     await sendEmail(
       user.email,
@@ -171,3 +172,34 @@ export const verifyOTP = async (req, res) => {
     }
   };
   
+export const googleLogin = async (req, res) => {
+  console.log("hlo from google login");
+  
+  try {
+    const { name, email, profileImage, googleUid } = req.body;
+
+    let user = await User.findOne({ email });
+
+    if (!user) {
+      user = await User.create({
+        name,
+        email,
+        password: googleUid, // store UID hashed if you wish
+        role: "user",
+        isVerified: true,
+        profileImage,
+      });
+    }
+
+    const token = generateToken(user)
+
+    res.status(200).json({
+      message: "Logged in successfully with Google",
+      user,
+      token,
+    });
+  } catch (error) {
+    console.error("Google Login Error:", error);
+    res.status(500).json({ message: "Google login failed" });
+  }
+};
