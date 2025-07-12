@@ -5,10 +5,10 @@ import { BsCloudDownload, BsPeople } from "react-icons/bs";
 
 const Achievements = () => {
   const achievements = [
-    { icon: <FaRegFaceSmileBeam size={45} className="text-blue-500 " />, count: "122,360", label: "Active Users" },
-    { icon: <FaRegStar size={60} className="text-orange-500" />, count: "1,820", label: "Reviews" },
-    { icon: <BsCloudDownload size={60} className="text-green-500" />, count: "48,597", label: "App Downloads" },
-    { icon: <BsPeople size={60} className="text-pink-600" />, count: "10,289,020", label: "Impressions" },
+    { icon: <FaRegFaceSmileBeam size={45} className="text-blue-500 " />, count: "360", label: "Active Users" },
+    { icon: <FaRegStar size={60} className="text-orange-500" />, count: "820", label: "Reviews" },
+    { icon: <BsCloudDownload size={60} className="text-green-500" />, count: "97", label: "App Downloads" },
+    { icon: <BsPeople size={60} className="text-pink-600" />, count: "1,020", label: "Impressions" },
   ];
 
   return (
