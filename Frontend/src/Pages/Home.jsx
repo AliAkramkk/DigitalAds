@@ -9,7 +9,7 @@ import Achievments from "../components/HomePage/Achievments";
 import Services from "../components/HomePage/Services";
 import holdwatchwin from "../assets/Images/holdwatchwin.png";
 import grow from "../assets/Images/grow.png";
-
+import { MdMapsHomeWork } from "react-icons/md";
 import TiltedGrid from "../components/HomePage/TiltedImageGrid";
 import { Link } from "react-router-dom";
 
@@ -54,12 +54,12 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <div className="relative bg-purple-50 ">
+      <div className="relative  ">
         {/* Top SVG Wave */}
       
 
         {/* Hero Section */}
-        <div className="relative bg-purple-50 min-h-screen flex flex-col md:flex-row justify-around pt-24 items-center px-6 overflow-hidden">
+        {/* <div className="relative bg-purple-50 min-h-screen flex flex-col md:flex-row justify-around pt-24 items-center px-6 overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={slides[currentSlide].id}
@@ -70,7 +70,7 @@ const Home = () => {
             className="flex flex-col md:flex-row justify-around items-center w-full"
           >
             {/* Text Section */}
-            <div className="m-3 py-10 md:py-15 md:px-5 text-left w-full md:w-1/2">
+            {/* <div className="m-3 py-10 md:py-15 md:px-5 text-left w-full md:w-1/2">
               <h1 className="text-3xl md:text-5xl font-mono text-gray-900">{slides[currentSlide].title}</h1>
               <p className="text-gray-700 mt-4 text-lg md:text-xl">{slides[currentSlide].description}</p>
               <Link to="/signup">
@@ -81,10 +81,10 @@ const Home = () => {
                 </span>
               </button>
               </Link>
-            </div>
+            </div> */}
 
             {/* Image Section */}
-            <motion.img
+            {/* <motion.img
               src={slides[currentSlide].img}
               alt=""
               className="m-2 md:py-5 md:w-[500px] md:h-auto object-cover rounded-lg"
@@ -95,6 +95,47 @@ const Home = () => {
             />
           </motion.div>
         </AnimatePresence>
+      </div> */} 
+
+      {/* herosection */}
+
+      <div className="flex flex-row  m-5 justify-center items-center gap-5">
+        <div className="flex flex-col w-1/2">
+          <h1 className="text-5xl p-3 font-mono mt-16">Change the  way <br />you use your <br /> social media </h1>
+          <p className="md:mt-24">Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi mollitia fugiat id odio neque ducimus, ex suscipit nulla esse cupiditate eum aperiam sequi ipsam quos dolorum eius cumque culpa nisi omnis alias incidunt velit!</p>
+          <Link to="/signup">
+              <button className="mt-3 md:mt-5 md:px-4 md:py-3 p-3 bg-black text-white rounded-full flex items-center justify-around gap-4 transition-all duration-300 group">
+                SignUp Now
+                <span className="font-bold text-2xl group-hover:translate-x-2 transition-transform duration-300">
+                  <BsArrowRight />
+                </span>
+              </button>
+              </Link>
+        </div>
+
+        <div className="flex flex-col mt-28 ">
+          <div className="flex flex-row gap- ml-32">
+            <div className="w-48 p-8"style={{ backgroundColor: '#E0EAE8' }}>
+              {/* Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla, suscipit? */}
+              <img src={holdwatchwin} alt="" className="-mt-12 w-[400px]" />
+            </div>
+            <div className="w-48 rounded-l-[150px]"style={{ backgroundColor: '#EBE8D8' }}>
+              <h1 className="text-end text-xl m-3 font-thin">121+</h1>
+              <h1 className="text-start m-3 text-xl font-thin">Companies</h1>
+             <h1 className="text-end text-5xl ml-28 font-thin"> <MdMapsHomeWork /></h1>
+            </div>
+          </div>
+
+           <div className="flex flex-row  ml-32">
+            <div className="w-48 p-8 rounded-tr-[85px] font-mono"style={{ backgroundColor: '#E0EAE8' }}>
+              13+ Active Users <br />80+ Buisness Owners <br /> 100+ Ads Uploaded
+            </div>
+            <div className="w-48"style={{ backgroundColor: '#1C3F3A' }}>
+        <img src={grow} alt="" className="items-center justify-center m-8" />
+            </div>
+          </div>
+          
+        </div>
       </div>
 
         {/* Customers Section */}
