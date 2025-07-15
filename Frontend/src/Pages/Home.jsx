@@ -4,7 +4,7 @@ import hom2 from "../assets/Images/phone2.png";
 // import GridMotion from "../components/HomePage/GridMotion";
 import Navbar from "../components/Navbar";
 import { motion, AnimatePresence } from "framer-motion";
-import { BsArrowRight,BsBuildingsFill } from "react-icons/bs";
+import { BsArrowRight,BsBuildingsFill,BsBarChartFill } from "react-icons/bs";
 import { AiOutlineUser,AiTwotoneVideoCamera,AiTwotoneDollar } from "react-icons/ai";
 import Achievments from "../components/HomePage/Achievments";
 import Services from "../components/HomePage/Services";
@@ -147,8 +147,8 @@ const Home = () => {
 <h1 className="text-md justify-center text-start  mt-8 ml-[450px] font-mono text-gray-400 "> Ads View redefines the way you earn online. <br />Whether you're a creator, business, or looking to boost passive income, <br />our platform helps you monetize your time effectively</h1>
        
        <div className="mx-20 mt-6 flex flex-row">
-        <div className="w-1/4 p-4 h-[280px] text-2xl text-white font-thin bg-amber-300"style={{ backgroundColor: '' }}>Make Your Digital Time More Meaningfull
-        <img src={hom1} alt="" className="bg-contain w-40 items-center ml-10 mt-6"/>
+        <div className="w-1/4 p-4 h-[280px] text-2xl text-white font-thin bg-amber-300"style={{ backgroundColor: '#1C3F3A' }}>Make Your Digital Time More Meaningfull
+        <BsBarChartFill className="w-36 h-48 text-white text-center items-center ml-8 mt-5" />
         </div>
         <div className=" p-4 h-[280px] mx-3 rounded-bl-[80px] w-5/6"style={{ backgroundColor: '#E0EAE8' }}>
         <div className="flex flex-row"
