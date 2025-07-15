@@ -4,7 +4,8 @@ import hom2 from "../assets/Images/phone2.png";
 // import GridMotion from "../components/HomePage/GridMotion";
 import Navbar from "../components/Navbar";
 import { motion, AnimatePresence } from "framer-motion";
-import { BsArrowRight } from "react-icons/bs";
+import { BsArrowRight,BsBuildingsFill } from "react-icons/bs";
+import { AiOutlineUser,AiTwotoneVideoCamera,AiTwotoneDollar } from "react-icons/ai";
 import Achievments from "../components/HomePage/Achievments";
 import Services from "../components/HomePage/Services";
 import holdwatchwin from "../assets/Images/holdwatchwin.png";
@@ -117,17 +118,17 @@ const Home = () => {
           <div className="flex flex-row gap- ml-32">
             <div className="w-48 p-8"style={{ backgroundColor: '#E0EAE8' }}>
               {/* Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla, suscipit? */}
-              <img src={holdwatchwin} alt="" className="-mt-12 w-[400px]" />
+              <img src={holdwatchwin} alt="" className="-mt-12 w-[400px] h-[150px]" />
             </div>
-            <div className="w-48 rounded-l-[150px]"style={{ backgroundColor: '#EBE8D8' }}>
+            <div className="w-48 h-[200px] rounded-l-[150px]"style={{ backgroundColor: '#EBE8D8' }}>
               <h1 className="text-end text-xl m-3 font-thin">121+</h1>
-              <h1 className="text-start m-3 text-xl font-thin">Companies</h1>
-             <h1 className="text-end text-5xl ml-28 font-thin"> <MdMapsHomeWork /></h1>
+              <h1 className="text-start m-3 mt-10 text-xl font-thin">Companies</h1>
+             <h1 className="text-end text-5xl ml-32 font-thin"> <MdMapsHomeWork /></h1>
             </div>
           </div>
 
            <div className="flex flex-row  ml-32">
-            <div className="w-48 p-8 rounded-tr-[85px] font-mono"style={{ backgroundColor: '#E0EAE8' }}>
+            <div className="w-48 p-8 rounded-tr-[105px] font-thin"style={{ backgroundColor: '#E0EAE8' }}>
               13+ Active Users <br />80+ Buisness Owners <br /> 100+ Ads Uploaded
             </div>
             <div className="w-48"style={{ backgroundColor: '#1C3F3A' }}>
@@ -140,14 +141,44 @@ const Home = () => {
 
         {/* Customers Section */}
  {/* <Achievments /> */}
-<Services />
-        <div className="hidden md:block py-12 text-center">
-         
-          {/* <GridMotion items={items} /> */}
-
+{/* <Services /> */}
+<h1 className="text-2xl text-green-950 text-center mt-14 font-mono "> About Us</h1>
+<h1 className="text-5xl  text-center mt-14 font-mono "> One App For all Your <br />Entertainment</h1>
+<h1 className="text-md justify-center text-start  mt-8 ml-[450px] font-mono text-gray-400 "> Ads View redefines the way you earn online. <br />Whether you're a creator, business, or looking to boost passive income, <br />our platform helps you monetize your time effectively</h1>
        
+       <div className="mx-20 mt-6 flex flex-row">
+        <div className="w-1/4 p-4 h-[280px] text-2xl text-white font-thin bg-amber-300"style={{ backgroundColor: '' }}>Make Your Digital Time More Meaningfull
+        <img src={hom1} alt="" className="bg-contain w-40 items-center ml-10 mt-6"/>
         </div>
-        <TiltedGrid />
+        <div className=" p-4 h-[280px] mx-3 rounded-bl-[80px] w-5/6"style={{ backgroundColor: '#E0EAE8' }}>
+        <div className="flex flex-row"
+        >
+          <div className="w-1/4 border shadow-xl p-4 m-3 font-thin rounded-bl-[40px]">
+          <BsBuildingsFill className="w-32 h-40 text-blue-400 " />
+         <h1 className="text-center">110+ companies</h1>
+
+          </div>
+          <div className="w-1/4 border shadow-xl p-4 m-3 font-thin">
+          <AiOutlineUser className="w-32 h-40 text-amber-400"/>
+         <h1 className="text-center">200+ Active Users</h1>
+
+          </div>
+          <div className="w-1/4 border shadow-xl p-4 m-3 font-thin text-center">
+          <AiTwotoneVideoCamera className="w-32 h-40 text-green-600"/>
+         <h1 className="text-center">200+ Ads Published</h1>
+
+          </div>
+          <div className="w-1/4 border shadow-xl p-4 m-3 font-thin">
+          <AiTwotoneDollar className="w-32 h-40 text-blue-600"/>
+         <h1 className="text-center">20000+ Rewards delivered</h1>
+
+          </div>
+       
+
+        </div>
+        
+        </div>
+       </div>
       </div>
     </>
   );
