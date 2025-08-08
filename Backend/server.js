@@ -43,6 +43,8 @@ io.on("connection", (socket) => {
 
  socket.on("user-message", async (msg) => {
   try {
+    console.log("hii from socket");
+    
     const response = await axios.post(
       "https://api-inference.huggingface.co/models/google/flan-t5-small",
       {
@@ -59,6 +61,7 @@ io.on("connection", (socket) => {
     socket.emit("admin-reply", botReply);
   } catch (error) {
     console.error("Error fetching Hugging Face response:", error?.response?.data || error.message);
+    console.error("Full error:", error.response?.data || error.message);
     socket.emit("admin-reply", "Sorry, I'm having trouble responding right now.");
   }
 });
