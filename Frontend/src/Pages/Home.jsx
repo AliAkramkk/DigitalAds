@@ -21,7 +21,6 @@ import HowItWorks from "../components/HowItWorks";
 import UserCustomerSplit from "../components/UserCustomerSplit";
 import RewardsSection from "../components/RewardsSection";
 import Testimonials from "../components/Testimonials";
-import FinalCTA from "../components/FinalCTA";
 
 
 const Home = () => {
@@ -50,29 +49,29 @@ const Home = () => {
       <div className="relative  ">
         {/* Top SVG Wave */}
       
-<Hero />
       
 
       <div className="flex md:flex-row flex-col  m-5 justify-center items-center gap-5">
-        <div className="flex flex-col w-full md:w-2/3 mt-20 md:p-5 bg-amber-300 rounded-r-full">
-          <h1 className="md:text-5xl p-3 font-mono mt-16">Change the  way <br />you use your <br /> social media </h1>
-          <p className="md:mt-24 text-gray-800 p-5">Make your digital time more meaningful with Ads View.Turn your screen time into rewards. Watch ads, earn cashback, and unlock exclusive deals effortlessly.
+        <div className="flex flex-col w-full md:w-[600px] md:h-[600px] mt-20 md:p-5 bg-amber-300 rounded-full">
+                <div className="hidden md:block absolute   h-11/12 w-11/12 bg-black  rounded-full z-0"></div>
+          <h1 className="md:text-5xl p-3 font-mono mt-10 md:mt-16 text-center ">Change the  way <br />you use your <br /> social media </h1>
+          <p className="md:mt-10 text-gray-800 px-12 md:px-7 text-start text-md  md:text-xl">Make your digital time more meaningful with Ads View.Turn your screen time into rewards. Watch ads, earn cashback, and unlock exclusive deals effortlessly.
             
             Join us today and start earning while you engage with content you love.
           </p>
           <Link to="/signup">
-              <button className="mt-3 md:mt-5 md:px-4 md:py-3 p-3 m-4 bg-black text-white rounded-full flex items-center justify-around gap-4 transition-all duration-300 group">
+              <button className="mt-3 md:mt-5 md:px-4 md:py-3 p-3 ml-24 m-5 md:m-0 md:ml-20 bg-black text-white rounded-full flex items-center justify-around gap-4 transition-all duration-300 group text-sm md:text-lg">
                 SignUp Now
-                <span className="font-bold text-2xl group-hover:translate-x-2 transition-transform duration-300">
+                <span className="font-bold md:text-2xl group-hover:translate-x-2 transition-transform duration-300">
                   <BsArrowRight />
                 </span>
               </button>
               </Link>
         </div>
 
-        <div className="relative flex flex-col mt-28 bg-amber-300 p-4 overflow-hidden">
-            <div className="hidden md:block absolute -left-72 -top-0 h-full w-10/12 bg-white rounded-full z-0"></div>
-          <div className="flex flex-row gap- ml-32">
+        <div className="relative flex flex-col mt-28  p-4 overflow-hidden">
+          
+          <div className="flex flex-row ml-12 md:ml-32">
             <div className="w-48 p-8"style={{ backgroundColor: '#E0EAE8' }}>
               {/* Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla, suscipit? */}
               <img src={holdwatchwin} alt="" className="-mt-12 w-[400px] h-[150px]" />
@@ -84,7 +83,7 @@ const Home = () => {
             </div>
           </div>
 
-           <div className="flex flex-row  ml-32">
+           <div className="flex flex-row ml-12 mr-5 md:ml-32">
             <div className="w-48 p-8 rounded-tr-[105px] font-thin"style={{ backgroundColor: '#E0EAE8' }}>
               <RiBardLine className=" w-10 h-10 text-start justify-start items-start mr-80"/>
               80+ Users Online <br />80+ Buisness Owners 
@@ -101,42 +100,54 @@ const Home = () => {
 <h1 className="px-4 md:px-0 md:text-5xl  md:text-center mt-14 font-mono "> One App For all Your <br />Entertainment</h1>
 <h1 className="px-4 text-md md:justify-center text-start  mt-8 md:ml-[450px] font-mono text-gray-400 "> Ads View redefines the way you earn online. <br />Whether you're a creator, business, or looking to boost passive income, <br />our platform helps you monetize your time effectively</h1>
        
-       <div className="md:mx-20 mx-5 mt-6 flex md:flex-row flex-row-2">
-        <div className="w:1/2 md:w-1/4 p-4 h-[280px] text-2xl text-white font-thin bg-amber-300"style={{ backgroundColor: '#1C3F3A' }}>Make Your Digital Time More Meaningfull
-        <BsBarChartFill className="md:w-36 md:h-48 h-28 text-white text-center items-center ml-8 mt-5" />
-        </div>
-        <div className=" p-4 h-[280px] m:3 md:mx-3 rounded-bl-[80px] md:w-5/6"style={{ backgroundColor: '#E0EAE8' }}>
-        <div className="flex md:flex-row "
-        >
-          <div className="w-1/4 border shadow-xl md:p-4 m-3 md:ml-16 font-thin ">
-          <BsBuildingsFill className="w-24 h-28 md:w-32 md:h-40 text-blue-400 " />
-         <h1 className="text-center">110+ companies</h1>
+      <section className="bg-gray-50 py-16 px-6 md:px-20">
+      {/* Hero Section */}
+      <div className="max-w-4xl mx-auto text-center mb-16">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-4">
+          Turn Your Digital Time Into Rewards
+        </h1>
+        <p className="text-lg md:text-xl text-gray-600 mb-8">
+          Trusted by 110+ companies and loved by 200+ active users.
+        </p>
+        {/* <button className="bg-amber-500 hover:bg-amber-600 text-white font-semibold py-3 px-6 rounded-lg transition">
+          Get Started
+        </button> */}
+      </div>
 
-          </div>
-          <div className="w-1/4 border shadow-xl md:p-4 m-3 font-thin">
-          <AiOutlineUser className="w-24 h-28 md:w-32 md:h-40 text-amber-700"/>
-         <h1 className="text-center">200+ Active Users</h1>
-
-          </div>
-          <div className="w-1/4 border shadow-xl md:p-4 m-3 font-thin text-center">
-          <AiTwotoneVideoCamera className="w-24 h-28 md:w-32 md:h-40 text-white"/>
-         <h1 className="text-center">200+ Ads Published</h1>
-
-          </div>
-          {/* <div className="w-1/4 border shadow-xl p-4 m-3 font-thin">
-          <AiTwotoneDollar className="w-32 h-40 text-blue-300"/>
-         <h1 className="text-center">20000+ Rewards delivered</h1>
-
-          </div> */}
-       
-
-        </div>
-        
-        </div>
-       </div>
+      {/* Stats Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        {[
+          {
+            Icon: BsBuildingsFill,
+            label: '110+ Companies',
+            color: 'text-teal-600',
+          },
+          {
+            Icon: AiOutlineUser,
+            label: '200+ Active Users',
+            color: 'text-amber-600',
+          },
+          {
+            Icon: AiTwotoneVideoCamera,
+            label: '200+ Ads Published',
+            color: 'text-blue-600',
+          },
+        ].map(({ Icon, label, color }) => (
+          <motion.div
+            key={label}
+            className="bg-white rounded-xl p-8 shadow-md flex flex-col items-center"
+            whileHover={{ scale: 1.05 }}
+            >
+            <Icon className={`${color} w-16 h-16 mb-4`} />
+            <div className="text-2xl font-semibold text-gray-800">{label}</div>
+          </motion.div>
+        ))}
+      </div>
+    </section>
       <HowItWorks />
 
 
+            <Hero />
        <UserCustomerSplit />
 
         {/* Customers Section */}
@@ -145,7 +156,7 @@ const Home = () => {
 
 <RewardsSection />
 <Testimonials />
-      <FinalCTA />
+      {/* <FinalCTA /> */}
        {/* <Services /> */}
       </div>
       <ChatBox />

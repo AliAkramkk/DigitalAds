@@ -36,12 +36,12 @@ const ChatBox = () => {
           Chat with us
         </button>
       ) : (
-        <div className="bg-white border shadow-xl rounded-lg w-80 h-96 flex flex-col">
-          <div className="bg-amber-500 text-white p-2 flex justify-between">
+        <div className="bg-white border shadow-xl rounded-2xl w-80 h-96 flex flex-col">
+          <div className="bg-amber-500 text-white p-2 flex justify-between rounded-2xl m-2">
             <span>Ask me anything</span>
-            <button onClick={() => setOpen(false)}>X</button>
+            <button className="text-2xl px-2" onClick={() => setOpen(false)}>X</button>
           </div>
-          <div className="flex-1 p-2 overflow-y-auto">
+          <div className="flex-1 p-2 overflow-y-auto rounded-2xl">
             {messages.map((msg, i) => (
               <div key={i} className={`mb-2 ${msg.from === "user" ? "text-right" : "text-left"}`}>
                 <span className={`inline-block px-3 py-1 rounded ${msg.from === "user" ? "bg-green-100" : "bg-gray-200"}`}>
@@ -50,7 +50,7 @@ const ChatBox = () => {
               </div>
             ))}
           </div>
-          <div className="flex p-2 border-t">
+          <div className="flex p-2 border ">
             <input
               type="text"
               className="flex-1 border p-1 rounded-l"
