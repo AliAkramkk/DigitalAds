@@ -5,13 +5,14 @@ const API_URL = import.meta.env.VITE_API_BASE_URL ;
 const socket = io("https://digitalads-backend.onrender.com", {
   transports: ["websocket"], // ensures it doesn’t fall back to polling
 });
-const messagesEndRef = useRef(null);
 
 const ChatBox = () => {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
-
+  
+  const messagesEndRef = useRef(null);
+  
  useEffect(() => {
   socket.on("admin-reply", (msg) => {
     setMessages((prev) => [...prev, { from: "bot", text: msg }]);
