@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useRef } from "react";
 import {io} from "socket.io-client";
 const API_URL = import.meta.env.VITE_API_BASE_URL ;
 
-const socket = io("https://digitalads-backend.onrender.com")
+const socket = io("https://digitalads-backend.onrender.com", {
+  transports: ["websocket"], // ensures it doesn’t fall back to polling
+});
+const messagesEndRef = useRef(null);
 
 const ChatBox = () => {
   const [open, setOpen] = useState(false);
@@ -19,8 +22,12 @@ const ChatBox = () => {
   };
 }, []);
 
+useEffect(() => {
+  messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+}, [messages]);
+
   const sendMessage = () => {
-    if (!input) return;
+    if (!input.trim()) return;
     setMessages((prev) => [...prev, { from: "user", text: input }]);
     socket.emit("user-message", input);
     setInput("");

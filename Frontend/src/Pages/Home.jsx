@@ -21,6 +21,7 @@ import HowItWorks from "../components/HowItWorks";
 import UserCustomerSplit from "../components/UserCustomerSplit";
 import RewardsSection from "../components/RewardsSection";
 import Testimonials from "../components/Testimonials";
+import ServiceCard from "../components/ServiceCard";
 
 
 const Home = () => {
@@ -51,9 +52,9 @@ const Home = () => {
       
       
 
+                <div className="hidden md:block absolute   h-1/12 w-1/12 bg-black  rounded-full z-0"></div>
       <div className="flex md:flex-row flex-col  m-5 justify-center items-center gap-5">
         <div className="flex flex-col w-full md:w-[600px] md:h-[600px] mt-20 md:p-5 bg-amber-300 rounded-full">
-                <div className="hidden md:block absolute   h-11/12 w-11/12 bg-black  rounded-full z-0"></div>
           <h1 className="md:text-5xl p-3 font-mono mt-10 md:mt-16 text-center ">Change the  way <br />you use your <br /> social media </h1>
           <p className="md:mt-10 text-gray-800 px-12 md:px-7 text-start text-md  md:text-xl">Make your digital time more meaningful with Ads View.Turn your screen time into rewards. Watch ads, earn cashback, and unlock exclusive deals effortlessly.
             
@@ -96,26 +97,26 @@ const Home = () => {
         </div>
       </div>
 
-     <h1 className="text-xl md:text-2xl text-green-950 text-center mt-14 font-mono "> About Us</h1>
+     {/* <h1 className="text-xl md:text-2xl text-green-950 text-center mt-14 font-mono "> About Us</h1>
 <h1 className="px-4 md:px-0 md:text-5xl  md:text-center mt-14 font-mono "> One App For all Your <br />Entertainment</h1>
 <h1 className="px-4 text-md md:justify-center text-start  mt-8 md:ml-[450px] font-mono text-gray-400 "> Ads View redefines the way you earn online. <br />Whether you're a creator, business, or looking to boost passive income, <br />our platform helps you monetize your time effectively</h1>
        
       <section className="bg-gray-50 py-16 px-6 md:px-20">
       {/* Hero Section */}
-      <div className="max-w-4xl mx-auto text-center mb-16">
+      {/* <div className="max-w-4xl mx-auto text-center mb-16">
         <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-4">
           Turn Your Digital Time Into Rewards
         </h1>
         <p className="text-lg md:text-xl text-gray-600 mb-8">
           Trusted by 110+ companies and loved by 200+ active users.
-        </p>
+        </p> */}
         {/* <button className="bg-amber-500 hover:bg-amber-600 text-white font-semibold py-3 px-6 rounded-lg transition">
           Get Started
         </button> */}
-      </div>
+      {/* </div> */}
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+      {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
         {[
           {
             Icon: BsBuildingsFill,
@@ -143,7 +144,8 @@ const Home = () => {
           </motion.div>
         ))}
       </div>
-    </section>
+    </section>  */}
+    <ServiceCard />
       <HowItWorks />
 
 

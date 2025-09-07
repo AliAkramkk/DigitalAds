@@ -41,30 +41,28 @@ const HUGGINGFACE_TOKEN = process.env.HUGGINGFACE_API_KEY;
 io.on("connection", (socket) => {
   console.log("📡 Visitor connected:", socket.id);
 
- socket.on("user-message", async (msg) => {
-  try {
-    console.log("hii from socket");
-    
-    const response = await axios.post(
-      "https://api-inference.huggingface.co/models/google/flan-t5-small",
-      {
-        inputs: `Answer this: ${msg}`,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${HUGGINGFACE_TOKEN}`,
-        },
-      }
-    );
+  socket.on("user-message", async (msg) => {
+    try {
+      // Call the working Hugging Face model
+      const response = await axios.post(
+        "https://api-inference.huggingface.co/models/distilgpt2",
+        { inputs: msg },
+        {
+          headers: {
+            Authorization: `Bearer ${HUGGINGFACE_TOKEN}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-    const botReply = response.data[0]?.generated_text || "Sorry, I didn't get that.";
-    socket.emit("admin-reply", botReply);
-  } catch (error) {
-    console.error("Error fetching Hugging Face response:", error?.response?.data || error.message);
-    console.error("Full error:", error.response?.data || error.message);
-    socket.emit("admin-reply", "Sorry, I'm having trouble responding right now.");
-  }
-});
+      // Get the generated text
+      const botReply = response.data[0]?.generated_text || "Sorry, I didn't get that.";
+      socket.emit("admin-reply", botReply);
+    } catch (error) {
+      console.error("Error fetching Hugging Face response:", error?.response?.data || error.message);
+      socket.emit("admin-reply", "Sorry, I'm having trouble responding right now.");
+    }
+  });
 
   socket.on("disconnect", () => {
     console.log("❌ Visitor disconnected:", socket.id);

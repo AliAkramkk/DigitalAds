@@ -13,10 +13,10 @@ const UserCustomerSplit = () => {
           monitor your performance, and grow your brand effortlessly.
         </p>
         <Link
-          to="/upload-ads"
+          to="/signup"
           className="inline-block bg-yellow-600 text-white px-6 py-3 rounded-full hover:bg-yellow-700 transition"
         >
-          Upload Your Ads
+          Market Your Business
         </Link>
       </div>
 
