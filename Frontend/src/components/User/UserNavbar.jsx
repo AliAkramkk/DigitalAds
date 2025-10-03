@@ -23,8 +23,8 @@ const UserNavbar = () => {
       {/* Logo */}
       <div className="container mx-auto flex justify-between items-center">
         
-      <Link to="/customer" className="text-2xl font-bold">
-          Ad Manager
+       <Link to="/user/home" className="text-xl md:text-4xl font-robotoCondensed text-gray-800">
+          AD<span className="text-purple-900">s</span> View<span className="text-sm">.in</span>
         </Link>
       
       {/* Navigation Links */}

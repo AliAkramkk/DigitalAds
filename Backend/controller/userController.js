@@ -3,6 +3,7 @@ import Ad from "../models/adModel.js";
 import AdView from "../models/AdViewSchema.js";
 import Reward from "../models/rewardSchema.js";
 import Comment from "../models/CommentSchema.js";
+import Blog from "../models/blogSchema.js"
 
 // ✅ Fetch latest ads
 export const getLatestAds = async (req, res) => {
@@ -149,3 +150,22 @@ export const getUserStats = async (req, res) => {
     res.status(500).json({ message: "Error fetching user stats", error: err.message });
   }
 }
+
+// Get blog posts (stub implementation)
+export const getBlogs = async (req, res) => {
+  try {
+    const { audience, category } = req.query;
+    console.log("Fetching blogs with filters:", { audience, category });
+    
+
+    let filter = { published: true };
+    if (audience) filter.audience = audience;
+    if (category && category !== "All") filter.category = category;
+
+    const blogs = await Blog.find(filter).sort({ createdAt: -1 });
+    res.json(blogs);
+  } catch (error) {
+    console.error("Error fetching blogs:", error);
+    res.status(500).json({ message: "Server Error" });
+  }
+};

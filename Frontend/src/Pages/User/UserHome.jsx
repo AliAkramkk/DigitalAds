@@ -1,91 +1,177 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import axiosInstance from "../../api/axiosInstance";
-import UserNavbar from '../../components/User/UserNavbar';
 import { useNavigate } from "react-router-dom";
-import Blogs from '../../components/User/Blogs';
+import axiosInstance from "../../api/axiosInstance";
+import UserNavbar from "../../components/User/UserNavbar";
+import Blogs from "../../components/User/Blogs";
+import { motion } from "framer-motion";
+import { Eye, Gift, Flame, Medal } from "lucide-react";
 
 const UserHome = () => {
   const { user } = useSelector((state) => state.auth);
   const [ads, setAds] = useState([]);
-  const [stats, setStats] = useState({ totalAdsWatched: 0, totalRewardEarned: 0 });
+  const [stats, setStats] = useState({
+    totalAdsWatched: 0,
+    totalRewardEarned: 0,
+  });
+  const [leaderboard, setLeaderboard] = useState([]);
+  const [progress, setProgress] = useState(40); // example: 40% to next reward
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    axiosInstance.get("/user/latest-ads")
-      .then(res => {
-        setAds(res.data);
-        console.log("Latest ads fetched successfully:", res.data);
-        
-      })
-      .catch(err => {
-        console.error("Failed to load ads", err);
-      });
-  }, []);
-
-  useEffect(() => {
-    axiosInstance.get("/user/latest-ads")
-      .then(res => setAds(res.data))
-      .catch(err => console.error("Failed to load ads", err));
-  
-    axiosInstance.get("/user/stats")
-      .then(res => setStats(res.data))
-      .catch(err => console.error("Failed to load stats", err));
+    axiosInstance.get("/user/latest-ads").then((res) => setAds(res.data));
+    axiosInstance.get("/user/stats").then((res) => setStats(res.data));
+    axiosInstance.get("/user/leaderboard").then((res) => setLeaderboard(res.data));
   }, []);
 
   return (
-    <> 
+    <>
       <UserNavbar />
-      <div className='flex md:flex-row m-5 gap-5 h-[145px] '>
-        <div className='p-5 w-2/3 shadow-lg bg-blend-hue bg-blue-50  font-thin rounded-lg items-center text-center text-xl md:text-5xl'> 
-          Welcome to ADs View Dashbord <br /> <span className='uppercase font-mono text-pink-600'>{user.name}</span>
-        </div>
-        <div className='w-1/3 shadow-lg bg-amber-50 rounded-lg p-5 text-xl md:text-3xl'>
-  <div>Total ads watched: <span className='font-bold'>{stats.totalAdsWatched}</span></div>
-  <div>Total rewards earned: <span className='font-bold'>{stats.totalRewardEarned}</span></div>
-</div>
-      </div> 
 
-      <div className='m-5'>
-        <div className='flex justify-between'>
-        <h2 className='text-xl md:text-2xl font-semibold mb-3 px-4'>Latest Ads</h2>
-        {/* <p className=' '>See All ads</p> */}
-        <button 
+      {/* Hero Section */}
+      <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-10 rounded-b-3xl shadow-lg">
+        <h1 className="text-3xl md:text-5xl font-bold">
+          Welcome back, {user.name} 👋
+        </h1>
+        <p className="mt-3 text-lg opacity-90">
+          Watch ads. Earn rewards. Stay updated.
+        </p>
+        <button
+          onClick={() => navigate("/ads")}
+          className="mt-5 px-6 py-3 bg-white text-indigo-600 font-semibold rounded-full shadow hover:bg-indigo-50"
+        >
+          Start Watching Ads
+        </button>
+      </div>
+
+      {/* Stats Section */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className="bg-white rounded-2xl shadow p-6 flex items-center gap-4"
+        >
+          <Eye className="w-10 h-10 text-indigo-600" />
+          <div>
+            <p className="text-gray-500">Total Ads Watched</p>
+            <h2 className="text-2xl font-bold">{stats.totalAdsWatched}</h2>
+          </div>
+        </motion.div>
+
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className="bg-white rounded-2xl shadow p-6 flex items-center gap-4"
+        >
+          <Gift className="w-10 h-10 text-pink-500" />
+          <div>
+            <p className="text-gray-500">Rewards Earned</p>
+            <h2 className="text-2xl font-bold">{stats.totalRewardEarned}</h2>
+          </div>
+        </motion.div>
+
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className="bg-white rounded-2xl shadow p-6 flex items-center gap-4"
+        >
+          <Flame className="w-10 h-10 text-yellow-500" />
+          <div>
+            <p className="text-gray-500">Active Streak</p>
+            <h2 className="text-2xl font-bold">5 Days</h2>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Progress Section */}
+      <div className="px-6">
+        <div className="bg-white shadow rounded-2xl p-6">
+          <h3 className="text-lg font-semibold mb-3">
+            Weekly Goal: Earn 100 Points
+          </h3>
+          <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
+            <div
+              className="bg-gradient-to-r from-indigo-500 to-purple-600 h-4"
+              style={{ width: `${progress}%` }}
+            ></div>
+          </div>
+          <p className="mt-2 text-sm text-gray-500">
+            You are {100 - progress}% away from your goal 🎯
+          </p>
+        </div>
+      </div>
+
+      {/* Latest Ads */}
+      <div className="p-6">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-2xl font-semibold">Latest Ads</h2>
+          <button
             onClick={() => navigate("/ads")}
-            className='rounded-full bg-black text-white p-3 text-sm hover:bg-white hover:text-black hover:border'
+            className="px-4 py-2 rounded-full bg-indigo-600 text-white hover:bg-indigo-700"
           >
             See All Ads
           </button>
         </div>
-        <div className='grid grid-cols-1 md:grid-cols-3 lg:gap-14 p-6'>
-        {ads.map((ad) => (
-  <div
-    key={ad._id}
-    onClick={() => navigate(`/user/ads/${ad._id}`)}
-    className='cursor-pointer relative h-56 rounded overflow-hidden shadow-lg bg-center  bg-no-repeat bg-cover transition-transform transform hover:scale-105'
-    style={{ backgroundImage: `url(${ad.thumbnailUrl})` }}
-  >
-    <div className='absolute inset-0 flex flex-col justify-end p-4 text-white border-4'>
-      <h3 className='text-lg font-semibold'>{ad.title}</h3>
-      <p className='text-sm truncate'>{ad.description}</p>
-    </div>
-  </div>
-))}
-        </div>
-        <div className='flex justify-center mt-4'>
-          
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {ads.map((ad) => (
+            <motion.div
+              key={ad._id}
+              whileHover={{ scale: 1.05 }}
+              onClick={() => navigate(`/user/ads/${ad._id}`)}
+              className="bg-white rounded-xl shadow overflow-hidden cursor-pointer"
+            >
+              <img
+                src={ad.thumbnailUrl}
+                alt={ad.title}
+                className="h-40 w-full object-cover"
+              />
+              <div className="p-4">
+                <h3 className="text-lg font-semibold">{ad.title}</h3>
+                <p className="text-sm text-gray-500 truncate">
+                  {ad.description}
+                </p>
+                <p className="mt-2 text-indigo-600 font-bold">+5 Points</p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
 
-      {/* <div className='grid grid-cols-4 m-5 bg-gray-100 h-[350px]'>
-        <div className='bg-white m-3 p-4 border-b-lime-300 border-4'>blogs</div> */}
-        {/* repeat for other blogs */}
-      {/* </div> */}
-      <h1 className='text-xl md:text-4xl font-thin mb-3 px-4 text-center '>Blogs</h1>
-<Blogs limit={3} showMore={true} />
-      <div className='bg-blue-200 h-[230px] m-5 text-center items-center justify-center py-10'>
-        footer
+      {/* Leaderboard */}
+      <div className="p-6">
+        <h2 className="text-2xl font-semibold mb-4">🏆 Leaderboard</h2>
+        <div className="bg-white shadow rounded-2xl p-6">
+          {leaderboard.slice(0, 5).map((user, index) => (
+            <div
+              key={user._id}
+              className="flex items-center justify-between py-2 border-b last:border-none"
+            >
+              <div className="flex items-center gap-3">
+                <Medal className="w-6 h-6 text-yellow-500" />
+                <span className="font-medium">{user.name}</span>
+              </div>
+              <span className="font-bold text-indigo-600">
+                {user.rewards} pts
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Blogs */}
+      <div className="p-6 bg-gray-50">
+        <h2 className="text-2xl font-semibold text-center mb-6">Blogs</h2>
+        <Blogs limit={3} showMore={true} />
+      </div>
+
+      {/* Footer */}
+      <div className="bg-indigo-600 text-white p-6 text-center mt-10">
+        <p className="text-lg font-semibold">
+          AD<span className="text-pink-400">s</span> View
+          <span className="text-sm">.in</span>
+        </p>
+        <p className="text-sm opacity-80 mt-2">
+          © 2025 AdsView.in — All Rights Reserved
+        </p>
       </div>
     </>
   );

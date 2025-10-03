@@ -3,7 +3,7 @@ import { FaBullhorn, FaUsers } from "react-icons/fa";
 
 const UserCustomerSplit = () => {
   return (
-    <section className="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-12 bg-gray-50 rounded-xl shadow-md">
+    <section className="max-w-6xl m-5 md:mx-auto px-6 py-16 grid md:grid-cols-2 gap-12 bg-gray-50 rounded-xl shadow-md">
       {/* Business Owner Section */}
       <div className="bg-white p-8 rounded-xl shadow hover:shadow-lg transition-shadow duration-300">
         <FaBullhorn size={50} className="text-yellow-600 mb-4" />

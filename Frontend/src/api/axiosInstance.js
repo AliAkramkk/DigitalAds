@@ -22,7 +22,7 @@ axiosInstance.interceptors.request.use((config) => {
 }, (error) => {
   return Promise.reject(error);
 });
-console.log(localStorage.getItem("token"));
+// console.log(localStorage.getItem("token"));
 
 // Add response interceptor to handle errors globally
 axiosInstance.interceptors.response.use(

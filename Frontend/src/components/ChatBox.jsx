@@ -12,7 +12,7 @@ const ChatBox = () => {
   const [input, setInput] = useState("");
   
   const messagesEndRef = useRef(null);
-  
+
  useEffect(() => {
   socket.on("admin-reply", (msg) => {
     setMessages((prev) => [...prev, { from: "bot", text: msg }]);
@@ -58,7 +58,7 @@ useEffect(() => {
               </div>
             ))}
           </div>
-          <div className="flex p-2 border ">
+          <div className="flex p-2  ">
             <input
               type="text"
               className="flex-1 border p-1 rounded-l"

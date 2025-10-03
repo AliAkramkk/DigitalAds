@@ -162,7 +162,7 @@ export const verifyOTP = async (req, res) => {
       // console.log("Generated Token:", token); // DEBUGGING LINE
   
       res.status(200).json({
-        message: "✅ Login successful",
+        message: " Login successful",
         token,
         user: { id: user._id, name: user.name,email:user.email, role: user.role },
       });

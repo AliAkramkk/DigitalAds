@@ -67,11 +67,11 @@ const ServiceCard = () => {
           ))}
         </div>
 <div className="sticky md:top-40 h-fit rounded-full bg-amber-300 md:w-[600px] md:h-[600px] w-[400px] h-[400px] flex items-center justify-center">
-  <div className="flex flex-col items-start">
-    <h1 className="text-3xl md:text-5xl font-stretch-50% text-[#1C3F3A] m-4 md:m-0 mb-6">
+  <div className="flex flex-col items-center md:items-start">
+    <h1 className="text-xl md:text-5xl font-stretch-50% text-[#1C3F3A] m-4 md:m-0 mb-6">
       Ads That Work,<br /> Rewards That Matter
     </h1>
-    <p className="text-lg text-black font-thin m-4 md:m-0 max-w-sm">
+    <p className="md:text-lg text-black font-thin m-4 md:m-0 max-w-sm">
       A smart platform where businesses grow with ads and users get rewarded for engagement.
     </p>
   </div>
