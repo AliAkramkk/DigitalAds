@@ -77,7 +77,7 @@ const Home = () => {
       </section>
 
       {/* 🧠 HOW IT WORKS */}
-      <div className="py-20 px-6 md:px-20">
+      <div className="md:py-10  md:px-20">
         <HowItWorks />
       </div>
 
@@ -87,7 +87,7 @@ const Home = () => {
       </div>
 
       {/* 🏆 REWARDS SECTION */}
-      <div className="bg-gray-50 py-16">
+      <div className="bg-gray-50 py-16 p-5 ">
         <RewardsSection />
       </div>
 

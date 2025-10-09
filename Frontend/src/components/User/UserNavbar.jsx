@@ -29,12 +29,13 @@ const UserNavbar = () => {
       
       {/* Navigation Links */}
       <div className="hidden md:flex space-x-6">
-      <ul className="hidden md:flex space-x-6 text-gray-700">
-        <li><Link to="/user/home" className="hover:text-blue-500">Home</Link></li>
-        <li><Link to="/user/watch-ads" className="hover:text-blue-500">Watch Ads</Link></li>
-        <li><Link to="/user/earnings" className="hover:text-blue-500">Earnings</Link></li>
-        <li><Link to="/user/redeem-rewards" className="hover:text-blue-500">Redeem Rewards</Link></li>
-        <li><Link to="/user/leaderboard" className="hover:text-blue-500">Leaderboard</Link></li>
+      <ul className="hidden md:flex space-x-6 text-gray-700 font-medium ">
+        <li><Link to="/user/home" className="hover:text-blue-900 hover:underline hover:border-2 hover:shadow-md hover:p-2">Home</Link></li>
+        <li><Link to="/user/watch-ads" className="hover:text-blue-900 hover:underline hover:border-2 hover:shadow-md hover:p-2">Watch Ads</Link></li>
+        <li><Link to="/user/earnings" className="hover:text-blue-900 hover:underline hover:border-2 hover:shadow-md hover:p-2">Earnings</Link></li>
+
+        <li><Link to="/user/redeem-rewards" className="hover:text-blue-900 hover:underline hover:border-2 hover:shadow-md hover:p-2">Redeem Rewards</Link></li>
+        <li><Link to="/user/leaderboard" className="hover:text-blue-900 hover:underline hover:border-2 hover:shadow-md hover:p-2">Leaderboard</Link></li>
       </ul>
       </div>
       

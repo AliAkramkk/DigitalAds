@@ -38,13 +38,13 @@ const Navbar = () => {
         <div className="hidden sm:flex gap-4">
           <button
             onClick={() => navigate("/login")}
-            className="px-6 py-3 bg-blue-950 text-white rounded-md transition hover:rounded-xl"
+            className="px-6 py-3 bg-gradient-to-br from-indigo-200 to-violet-50 text-black rounded-md transition hover:rounded-xl"
           >
             Login
           </button>
           <button
             onClick={() => navigate("/signup")}
-            className="px-6 py-3 bg-blue-950 text-white rounded-md transition hover:rounded-xl"
+            className="px-6 py-3 bg-gradient-to-br from-indigo-300 to-violet-50 text-black rounded-md transition hover:rounded-xl"
           >
             Signup
           </button>

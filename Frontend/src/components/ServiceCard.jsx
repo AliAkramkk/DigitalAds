@@ -55,7 +55,7 @@ const StepCard = ({ step, index }) => {
 
 const ServiceCard = () => {
   return (
-    <section className="relative py-20  my-28 mx-4 md:m-24">
+    <section className="relative py-20  my-28  md:m-24">
       <div className="md:max-w-7xl mx-auto grid md:grid-cols-2 gap-16 px-6">
         {/* Left fixed heading */}
       
@@ -66,9 +66,9 @@ const ServiceCard = () => {
             <StepCard key={index} step={step} index={index} />
           ))}
         </div>
-<div className="sticky md:top-40 h-fit rounded-full bg-amber-300 md:w-[600px] md:h-[600px] w-[400px] h-[400px] flex items-center justify-center">
+<div className="sticky md:top-40  rounded-full bg-gradient-to-br from-indigo-200 to-violet-50 md:w-[600px] md:h-[600px] w-[400px] h-[400px] flex items-center justify-center">
   <div className="flex flex-col items-center md:items-start">
-    <h1 className="text-xl md:text-5xl font-stretch-50% text-[#1C3F3A] m-4 md:m-0 mb-6">
+    <h1 className="text-lg md:text-5xl font-stretch-50% text-[#1C3F3A] m-4 md:m-0 mb-6">
       Ads That Work,<br /> Rewards That Matter
     </h1>
     <p className="md:text-lg text-black font-thin m-4 md:m-0 max-w-sm">

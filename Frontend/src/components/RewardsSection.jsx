@@ -2,7 +2,7 @@ import { RiHandCoinFill } from "react-icons/ri";
 
 const RewardsSection = () => {
   return (
-    <section className="bg-gradient-to-r from-amber-200 to-violet-500 text-white py-20 px-6 text-center rounded-xl max-w-5xl mx-5 md:mx-auto my-20 shadow-lg">
+    <section className="bg-gradient-to-r from-amber-200 to-violet-300 text-white py-20 px-6 text-center rounded-xl max-w-5xl mx-3 md:mx-auto md:my-20 shadow-lg">
       <RiHandCoinFill size={70} className="mx-auto mb-6 text-yellow-300 drop-shadow-lg" />
       <h2 className="text-4xl md:text-5xl font-bold mb-4 font-mono">
         Earn Rewards Effortlessly

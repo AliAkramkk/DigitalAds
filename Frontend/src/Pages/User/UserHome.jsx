@@ -30,7 +30,7 @@ const UserHome = () => {
       <UserNavbar />
 
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-10 rounded-b-3xl shadow-lg">
+      <div className="bg-gradient-to-br from-indigo-300 to-violet-100 text-white p-10 rounded-b-3xl shadow-lg">
         <h1 className="text-3xl md:text-5xl font-bold">
           Welcome back, {user.name} 👋
         </h1>
@@ -89,7 +89,7 @@ const UserHome = () => {
           </h3>
           <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
             <div
-              className="bg-gradient-to-r from-indigo-500 to-purple-600 h-4"
+              className="bg-gradient-to-bl from-indigo-300 to-violet-700 h-4"
               style={{ width: `${progress}%` }}
             ></div>
           </div>
@@ -105,7 +105,7 @@ const UserHome = () => {
           <h2 className="text-2xl font-semibold">Latest Ads</h2>
           <button
             onClick={() => navigate("/ads")}
-            className="px-4 py-2 rounded-full bg-indigo-600 text-white hover:bg-indigo-700"
+            className="px-4 py-2 rounded-full bg-gradient-to-br from-indigo-500 to-violet-200 text-white hover:bg-indigo-700"
           >
             See All Ads
           </button>

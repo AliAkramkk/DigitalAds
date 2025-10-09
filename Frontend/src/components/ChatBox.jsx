@@ -39,7 +39,7 @@ useEffect(() => {
       {!open ? (
         <button
           onClick={() => setOpen(true)}
-          className="bg-amber-500 text-white p-3 rounded-full"
+          className="bg-gradient-to-br from-indigo-400 to-violet-50 text-white p-3 rounded-full"
         >
           Chat with us
         </button>
