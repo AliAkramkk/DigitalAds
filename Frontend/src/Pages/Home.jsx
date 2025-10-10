@@ -51,7 +51,7 @@ const Home = () => {
             <img
               src={holdwatchwin}
               alt="Hold Watch Win"
-              className="w-64 md:w-80 drop-shadow-lg"
+              className="w-64 md:w-80 drop-shadow-lg rounded-full"
             />
           </div>
         </div>

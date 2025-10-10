@@ -35,7 +35,7 @@ const HowItWorks = () => {
           {users.concat(users).map((user, i) => (
             <div
               key={i}
-              className="bg-white mx-auto mb-4 p-6 rounded-xl shadow-lg w-80 text-center h-48"
+              className="bg-white mx-auto mb-4 p-6  shadow-lg w-80 text-center h-48"
             >
               <h3 className="text-xl font-semibold text-gray-800">{user.name}</h3>
               <p className="text-gray-600 mt-2">
